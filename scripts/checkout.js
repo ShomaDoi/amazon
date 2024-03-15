@@ -1,10 +1,10 @@
-import { cart } from '../data/cart.js';
+import { cart, removeFromCart } from '../data/cart.js';
 import { products } from '../data/products.js';
-import { formatCurrenycy } from './utils/money.js';
+import { formatCurrency } from './utils/money.js';
 
 
 let cartSummaryHTML = '';
-console.log(cart);
+
     cart.forEach((cartItem) => {
         const productId = cartItem.productId;
         let matchingProduct;
@@ -14,7 +14,7 @@ console.log(cart);
                 matchingProduct = product;
             }
         });
-        console.log(matchingProduct);
+       
     cartSummaryHTML += ` <div class="cart-item-container">
         <div class="delivery-date">
             Delivery date: Wednesday, June 15
@@ -29,7 +29,7 @@ console.log(cart);
                 ${matchingProduct.name}
             </div>
             <div class="product-price">
-                $${formatCurrenycy(matchingProduct.priceCents)}
+                $${formatCurrency(matchingProduct.priceCents)}
             </div>
             <div class="product-quantity">
                 <span>
@@ -38,7 +38,7 @@ console.log(cart);
                 <span class="update-quantity-link link-primary">
                 Update
                 </span>
-                <span class="delete-quantity-link link-primary">
+                <span class="delete-quantity-link link-primary js-delete-quantity" data-product-id="${matchingProduct.id}">
                 Delete
                 </span>
             </div>
@@ -88,9 +88,19 @@ console.log(cart);
             </div>
         </div>
         </div>`;
-        console.log(cartSummaryHTML);
+       
 });
 
 document.querySelector('.js-order-summary')
     .innerHTML = cartSummaryHTML;
 
+document.querySelectorAll('.js-delete-quantity').forEach((span) => {
+    span.addEventListener('click', () => {
+        console.log(span.dataset.productId);
+        const productId = span.dataset.productId;
+        console.log(productId);
+        removeFromCart(productId);
+        console.log(cart);
+    })
+    
+})
