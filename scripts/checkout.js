@@ -15,7 +15,8 @@ let cartSummaryHTML = '';
             }
         });
        
-    cartSummaryHTML += ` <div class="cart-item-container">
+    cartSummaryHTML += ` <div class="cart-item-container 
+        js-cart-item-container-${matchingProduct.id}">
         <div class="delivery-date">
             Delivery date: Wednesday, June 15
         </div>
@@ -100,6 +101,8 @@ document.querySelectorAll('.js-delete-quantity').forEach((span) => {
         const productId = span.dataset.productId;
         console.log(productId);
         removeFromCart(productId);
+        const container = document.querySelector(`.js-cart-item-container-${productId}`);
+        container.remove();
         console.log(cart);
     })
     
