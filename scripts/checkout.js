@@ -97,13 +97,10 @@ document.querySelector('.js-order-summary')
 
 document.querySelectorAll('.js-delete-quantity').forEach((span) => {
     span.addEventListener('click', () => {
-        console.log(span.dataset.productId);
         const productId = span.dataset.productId;
-        console.log(productId);
         removeFromCart(productId);
         const container = document.querySelector(`.js-cart-item-container-${productId}`);
         container.remove();
-        console.log(cart);
     })
     
 })
