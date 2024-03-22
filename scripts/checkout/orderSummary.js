@@ -33,6 +33,7 @@ export function renderOrderSummary() {
     const deliveryDate = today.add(deliveryOption.deliveryTime, 'days');
     const dateString = deliveryDate.format('dddd, MMMM, D');
     console.log(deliveryOption);   
+    
     cartSummaryHTML += ` <div class="cart-item-container 
         js-cart-item-container-${matchingProduct.id}">
             <div class="delivery-date">
@@ -120,6 +121,8 @@ export function renderOrderSummary() {
             removeFromCart(productId);
             const container = document.querySelector(`.js-cart-item-container-${productId}`);
             container.remove();
+
+            rednerPaymentSummary();
         });
         
     });

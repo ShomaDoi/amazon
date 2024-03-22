@@ -3,6 +3,7 @@ import { products } from "../../data/products.js";
 import { deliveryOptions } from "../../data/deliveryOptions.js";
 import { formatCurrency,addTax } from "../utils/money.js";
 
+
 export function rednerPaymentSummary() {
     let itemQuantity = 0;
     let totalPrice = 0;
@@ -25,10 +26,10 @@ export function rednerPaymentSummary() {
         });
     });
     
-    console.log(shippingPrice);
-    console.log(itemQuantity);
-    console.log(totalPrice);
+  
     totalAfterTax = addTax(totalPrice+shippingPrice);
+    
+    document.querySelector('.js-return-to-home-link').innerHTML=`${itemQuantity}`;
 
     document.querySelector('.js-payment-summary')
         .innerHTML = `<div class="payment-summary-title">
