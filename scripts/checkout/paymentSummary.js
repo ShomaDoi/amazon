@@ -4,7 +4,7 @@ import { deliveryOptions } from "../../data/deliveryOptions.js";
 import { formatCurrency,addTax } from "../utils/money.js";
 
 
-export function rednerPaymentSummary() {
+export function renderPaymentSummary() {
     let itemQuantity = 0;
     let totalPrice = 0;
     let shippingPrice = 0;

@@ -4,7 +4,7 @@ import { products } from '../../data/products.js';
 import { formatCurrency } from '../utils/money.js';
 import  dayjs  from 'https://unpkg.com/dayjs@1.11.10/esm/index.js'
 import { deliveryOptions } from '../../data/deliveryOptions.js'
-import { rednerPaymentSummary } from './paymentSummary.js';
+import { renderPaymentSummary } from './paymentSummary.js';
 
 export function renderOrderSummary() {
     let cartSummaryHTML = '';
@@ -58,7 +58,7 @@ export function renderOrderSummary() {
                         <span class="update-quantity-link link-primary">
                         Update
                         </span>
-                        <span class="delete-quantity-link link-primary js-delete-quantity" data-product-id="${matchingProduct.id}">
+                        <span class="delete-quantity-link link-primary js-delete-quantity js-delete-link-${matchingProduct.id}" data-product-id="${matchingProduct.id}">
                         Delete
                         </span>
                     </div>
@@ -122,7 +122,7 @@ export function renderOrderSummary() {
             const container = document.querySelector(`.js-cart-item-container-${productId}`);
             container.remove();
 
-            rednerPaymentSummary();
+            renderPaymentSummary();
         });
         
     });
@@ -133,7 +133,7 @@ export function renderOrderSummary() {
                 const {productId, deliveryOptionId} = element.dataset;
                 updateDeliveryOption(productId, deliveryOptionId);
                 renderOrderSummary();
-                rednerPaymentSummary();
+                renderPaymentSummary();
                 
             });
         });
